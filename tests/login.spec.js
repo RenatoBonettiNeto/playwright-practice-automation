@@ -28,3 +28,13 @@ test("Negative username test", async ({ page }) => {
   await expect(page.locator("#error")).toBeVisible();
   await expect(page.locator("#error")).toHaveText("Your username is invalid!");
 });
+
+test("Negative password test", async ({ page }) => {
+  await page.goto("https://practicetestautomation.com/practice-test-login/");
+  await expect(page).toHaveTitle("Test Login | Practice Test Automation");
+  await page.locator("#username").fill("student");
+  await page.locator("#password").fill("incorrectPassword");
+  await page.locator("#submit").click();
+  await expect(page.locator("#error")).toBeVisible();
+  await expect(page.locator("#error")).toHaveText("Your password is invalid!");
+});
